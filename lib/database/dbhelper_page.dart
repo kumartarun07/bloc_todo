@@ -15,6 +15,7 @@ class DbHelper
   static final String COLUMN_TODO_TITLE ="title";
   static final String COLUMN_TODO_DESC = "desc";
   static final String COLUMN_TODO_COMPLETED ="completed";
+  static final String COLUMN_TODO_CREATED_AT ="created_at";
 
   Future<Database> getDB()
   async{
@@ -35,7 +36,7 @@ class DbHelper
     String dbpath = join(dir.path,"todo.db");
     return await openDatabase(dbpath,onCreate: (db,vrsion){
       db.execute("create table $TABLE_TODO ( $COLUMN_TODO_SNO INTEGER PRIMARY KEY AUTOINCREMENT,"
-          "$COLUMN_TODO_TITLE TEXT ,$COLUMN_TODO_DESC TEXT , $COLUMN_TODO_COMPLETED INTEGER )");
+          "$COLUMN_TODO_TITLE TEXT ,$COLUMN_TODO_DESC TEXT , $COLUMN_TODO_COMPLETED INTEGER , $COLUMN_TODO_CREATED_AT text )");
     },version: 1);
   }
 

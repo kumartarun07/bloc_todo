@@ -3,6 +3,7 @@ import 'package:bloc_todo/bloc/todo_event.dart';
 import 'package:bloc_todo/database/todo_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class AddPage extends StatelessWidget
 {
@@ -13,6 +14,7 @@ class AddPage extends StatelessWidget
   AddPage({this.sno=0,this.title="",this.desc="",this.completed=0,this.isupdate=false});
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
+
   @override
   Widget build(BuildContext context)
   {
@@ -67,11 +69,11 @@ class AddPage extends StatelessWidget
                     if(isupdate && titleController.text.isNotEmpty&& descController.text.isNotEmpty)
                       {
                         context.read<TodoBloc>().add(UpdateTodo(updateTodo: TodoModel(title: titleController.text,
-                            desc: descController.text, completed: completed), sno: sno));
+                            desc: descController.text, completed: completed,created_at: DateTime.now().microsecondsSinceEpoch.toString()), sno: sno));
                       }
                     else{
                       context.read<TodoBloc>().add(AddTodo(newTodo: TodoModel(title: titleController.text,
-                          desc: descController.text, completed: completed)));
+                          desc: descController.text, completed: completed,created_at: DateTime.now().microsecondsSinceEpoch.toString())));
                     }
                     Navigator.pop(context);
 
