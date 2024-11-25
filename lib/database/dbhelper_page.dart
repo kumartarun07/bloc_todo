@@ -34,7 +34,7 @@ class DbHelper
   async{
     Directory dir = await getApplicationDocumentsDirectory();
     String dbpath = join(dir.path,"todo.db");
-    return await openDatabase(dbpath,onCreate: (db,vrsion){
+    return await openDatabase(dbpath,onCreate: (db,version){
       db.execute("create table $TABLE_TODO ( $COLUMN_TODO_SNO INTEGER PRIMARY KEY AUTOINCREMENT,"
           "$COLUMN_TODO_TITLE TEXT ,$COLUMN_TODO_DESC TEXT , $COLUMN_TODO_COMPLETED INTEGER , $COLUMN_TODO_CREATED_AT text )");
     },version: 1);
